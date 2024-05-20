@@ -6,11 +6,10 @@ public class Main {
     private static Tienda tienda = new Tienda("AnimalCrossingShop");
 
     public static void main(String[] args) {
-
+        addCliente();
         addCliente();
         addMascota();
-
-
+        addMascota();
     }
 
     public static void addCliente() {
@@ -33,5 +32,13 @@ public class Main {
         Cliente c = MiEntradaSalida.leerEnum("Seleccione el cliente", clientes.toArray(Cliente[] :: new));
         Mascota m = MiEntradaSalida.leerEnum("Selecciona la mascota", mascotas.toArray(Mascota[]::new));
         tienda.comprarMascota(c,m);
+    }
+
+    public static void devolucion() {
+        List<Cliente> clientes = tienda.getListaClientes();
+        Cliente c = MiEntradaSalida.leerEnum("Seleccione el cliente", clientes.toArray(Cliente[] :: new));
+        List<Compra> compras = tienda.listarComprasDeCliente(c);
+        Compra compra = MiEntradaSalida.leerEnum("Selecciona la comrpra", compras.toArray(Compra[] :: new));
+
     }
 }

@@ -38,7 +38,18 @@ public class Tienda {
 
     }
 
+    public List<Compra> listarComprasDeCliente(Cliente cliente) {
+        return listaCompras.stream().filter(compra -> {
+           return compra.getCliente().equals(cliente) && compra.getFechaDevolucion() == null;
+        }).toList();
+    }
+
     public List<Cliente> getListaClientes() {
         return listaClientes;
+    }
+
+    public void validarDevolucion(Compra compra) {
+        compra.marcarDevuelta();
+        compra.getMascota().setDisponible(true);
     }
 }
